@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equiscience – Harnessing the Science of Equitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #f5f0e8;
+      --parchment: #ede5d4;
+      --sand: #d4c9a8;
+      --brown: #6b4c2a;
+      --dark-brown: #3d2810;
+      --oli ve: #5a6b3a;
+      --olive-dark: #3d4f28;
+      --gold: #c8a84b;
+      --gold-light: #e8c870;
+      --text: #2c1a0a;
+      --text-mid: #5c3d1e;
+      --white: #fff;
+      --contact-bg: #4a5c2a;
+      --font-d: 'Playfair Display', Georgia, serif;
+      --font-b: 'Lato', sans-serif;
+      --nav-h: 68px;
+      --max-w: 1100px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-b);
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+
+    /* NAV */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid var(--sand);
+      backdrop-filter: blur(8px);
+      transition: box-shadow 0.3s;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 2px 20px rgba(60, 30, 0, 0.15);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .brand-logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-family: var(--font-d);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark-brown);
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 0.65rem;
+      color: var(--text-mid);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2px;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.75rem;
+      color: var(--text-mid);
+      padding: 6px 9px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--dark-brown);
+      background: var(--parchment);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--dark-brown);
+      padding: 4px;
+      margin-left: auto;
+      line-height: 0;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+
+    .hero-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: var(--white);
+      padding: 0 24px;
+    }
+
+    .hero-title {
+      font-family: var(--font-d);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-btn {
+      background: var(--gold);
+      color: var(--dark-brown);
+      border: none;
+      border-radius: 5px;
+      padding: 14px 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .hero-btn:hover {
+      background: var(--gold-light);
+      transform: scale(1.05);
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 72px 24px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: var(--font-d);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--dark-brown);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .divider {
+      text-align: center;
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 40px;
+      letter-spacing: 0.5em;
+    }
+
+    /* WHY */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .why-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 28px 16px;
+      background: var(--parchment);
+      border: 1px solid var(--sand);
+      border-radius: 8px;
+      text-align: center;
+      cursor: default;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .why-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(60, 30, 0, 0.12);
+    }
+
+    .why-icon i {
+      font-size: 2.5rem;
+      color: var(--gold);
+    }
+
+    .why-card p {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.35;
+    }
+
+    /* SERVICES */
+    .services-outer {
+      background: var(--cream);
+      padding: 72px 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 0 24px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 14px rgba(60, 30, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 14px 36px rgba(60, 30, 0, 0.16);
+    }
+
+    .service-img-wrap img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .service-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 18px 16px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.78));
+      color: var(--white);
+    }
+
+    .service-overlay h3 {
+      font-family: var(--font-d);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .service-sub {
+      font-size: 0.72rem;
+      opacity: 0.85;
+    }
+
+    .service-body {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .service-body p {
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .btn-learn {
+      align-self: flex-start;
+      background: var(--olive);
+      color: var(--white);
+      border: none;
+      border-radius: 5px;
+      padding: 9px 22px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-learn:hover {
+      background: var(--olive-dark);
+      transform: scale(1.04);
+    }
+
+    /* APPROACH+RATES */
+    .approach-rates-outer {
+      background: var(--parchment);
+      padding: 72px 24px;
+    }
+
+    .approach-rates-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .rates-heading {
+      font-family: var(--font-d);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--dark-brown);
+      text-align: center;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .line-dec {
+      color: var(--sand);
+    }
+
+    .star-icon {
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+
+    .rates-list,
+    .approach-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rates-list li,
+    .approach-list li {
+      font-size: 0.9rem;
+      color: var(--text);
+      padding-left: 4px;
+      line-height: 1.4;
+    }
+
+    .rates-list strong {
+      color: var(--dark-brown);
+      font-weight: 700;
+    }
+
+    .approach-block .section-title,
+    .approach-block .divider {
+      text-align: left;
+    }
+
+    .approach-sub {
+      font-family: var(--font-d);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      margin-bottom: 18px;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--contact-bg);
+      padding: 56px 24px 36px;
+    }
+
+    .contact-title {
+      font-family: var(--font-d);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      max-width: 820px;
+      margin: 0 auto 28px;
+    }
+
+    .contact-form-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-input {
+      width: 100%;
+      padding: 11px 15px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+      color: var(--white);
+      font-size: 0.85rem;
+      font-family: var(--font-b);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .contact-input::placeholder {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .contact-input:focus {
+      border-color: var(--gold-light);
+    }
+
+    .contact-textarea {
+      resize: vertical;
+      min-height: 95px;
+    }
+
+    .btn-send {
+      background: var(--olive-dark);
+      color: var(--white);
+      border: none;
+      b order-radius: 5px;
+      padding: 11px 28px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background 0.2s;
+    }
+
+    .btn-send:hover {
+      background: #273419;
+    }
+
+    .contact-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.85rem;
+    }
+
+    .contact-detail i {
+      color: var(--gold);
+    }
+
+    .map-placeholder img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .contact-icon-btn i {
+      color: var(--white);
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+
+    .contact-icon-btn i:hover {
+      color: var(--gold);
+    }
+
+
+    /* FOOTER */
+    .footer {
+      background: var(--dark-brown);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-legal {
+      font-size: 0.67rem;
+      color: rgba(255, 255, 255, 0.42);
+      text-align: center;
+      max-width: 720px;
+      line-height: 1.55;
+    }
+
+    .footer-legal a {
+      color: rgba(255, 255, 255, 0.52);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-link {
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+
+    .social-link:hover {
+      color: var(--gold);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: var(--nav-h);
+        right: 0;
+        width: 250px;
+        height: calc(100vh - var(--nav-h));
+        background: var(--white);
+        z-index: 99;
+        padding: 16px;
+        gap: 4px;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.14);
+        overflow-y: auto;
+      }
+
+      .nav-links.open li a {
+        display: block;
+        padding: 13px 18px;
+        font-size: 0.9rem;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-content {
+        padding: 0 28px 52px;
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .approach-rates-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:580px) {
+      .hero {
+        min-height: 380px;
+      }
+
+      .hero-title {
+        font-size: 1.35rem;
+      }
+
+      .hero-content {
+        padding: 0 20px 44px;
+      }
+
+      .section {
+        padding: 52px 16px;
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .why-card {
+        padding: 18px 10px;
+      }
+
+      .why-icon {
+        width: 44px;
+        height: 44px;
+      }
+
+      .services-outer {
+        padding: 52px 0;
+      }
+
+      .services-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 0 16px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+      }
+
+      .services-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .service-card {
+        min-width: 78vw;
+        max-width: 82vw;
+        scroll-snap-align: start;
+      }
+
+      .approach-rates-outer {
+        padding: 52px 16px;
+      }
+
+      .contact-section {
+        padding: 44px 16px 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="#">
+        <div class="brand-logo">
+          <img src="img/logo.jpg" alt="Logo" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Horse Rebllion</span>
+
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="hamburger">☰</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img class="hero-img" src="img/hero.jpg" alt="Hero" />
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Equiscience: Harnessing the<br />Science of Equitation.</h1>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <div class="section"id="about">
+    <h2 class="section-title">Why Choose Me?</h2>
+    <div class="divider">❧</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-brain"></i></div>
+        <p>Behavioral Analysis</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-horse"></i></div>
+        <p>Equine Coaching</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-leaf"></i></div>
+        <p>Sustainable Coaching</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-book-reader"></i></div>
+        <p>Ethological Science</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="services-outer"id="services">
+    <h2 class="section-title">My Services</h2>
+    <div class="divider">❧</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-img-wrap">
+          <img src="img/icon1.jpg" alt="Behavioral Work" />
+          <div class="service-overlay">
+            <h3>Behavioral Work</h3>
+            <p class="service-sub">Groundwork & Problem Solving</p>
+          </div>
+        </div>
+        <div class="service-body">
+          <p>Behavioral Work: Groundwork & Problem Solving. Involves your world and reconnected with work horses...</p>
+          <button class="btn-learn">Learn More</button>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-img-wrap">
+          <img src="img/icon2.jpg" alt="Rider Coaching" />
+          <div class="service-overlay">
+            <h3>Rider Coaching</h3>
+            <p class="service-sub">Synergistic Riding Techniques</p>
+          </div>
+        </div>
+        <div class="service-body">
+          <p>Rider Coaching: Synergistic Riding Techniques focuses on recording assets as injure or science
+            techniques...</p>
+          <button class="btn-learn">Learn More</button>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-img-wrap">
+          <img src="img/icon3.jpg" alt="Rehabilitation" />
+          <div class="service-overlay">
+            <h3>Rehabilitation</h3>
+            <p class="service-sub">Recovery & Health Support</p>
+          </div>
+        </div>
+        <div class="service-body">
+          <p>Rehabilitation: Focused on horse recovery, physical therapy, and long-term health management.</p>
+          <button class="btn-learn">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPROACH & RATES -->
+  <div class="approach-rates-outer">
+    <div class="approach-rates-grid">
+      <!-- Approach -->
+      <div class="approach-block">
+        <h2 class="section-title">My Approach</h2>
+        <div class="divider">❧</div>
+        <p class="approach-sub">A blend of ethology, science, and individual attention:</p>
+        <ul class="approach-list">
+          <li>Understanding equine behavior</li>
+          <li>Building trust through gentle techniques</li>
+          <li>Custom programs for each horse and rider</li>
+        </ul>
+      </div>
+      <!-- Rates -->
+      <div class="rates-block">
+        <h2 class="rates-heading"><span class="line-dec">★</span> Rates & Packages</h2>
+        <ul class="rates-list">
+          <li><strong>Behavioral Work:</strong> $80 / hr</li>
+          <li><strong>Rider Coaching:</strong> $70 / hr</li>
+          <li><strong>Rehabilitation:</strong> $90 / hr</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <h2 class="contact-title">Contact Me</h2>
+    <div class="contact-inner">
+      <!-- Form -->
+      <div class="contact-form-col">
+        <input type="text" class="contact-input" placeholder="Your Name" />
+        <input type="email" class="contact-input" placeholder="Your Email" />
+        <input type="text" class="contact-input" placeholder="Subject" />
+        <textarea class="contact-input contact-textarea" placeholder="Your Message"></textarea>
+        <button class="btn-send">Send Message</button>
+      </div>
+      <!-- Info -->
+      <div class="contact-info-col">
+        <div class="contact-detail"><i class="fas fa-envelope"></i> <span>Audrycv@gmx.fr</span></div>
+        <div class="contact-detail"><i class="fas fa-phone"></i> <span>+33629783164</span></div>
+        <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <span>South of France</span></div>
+      </div>
+
+    </div>
+    
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="social-links">
+      <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.tiktok.com%2F%40audreyporcileequiscience%3F_r%3D1%26_t%3DZN-95MeUXNl7yQ%26fbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBExbUVKWFNWVEc5QTBYbWw0NHNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR4IDq8vwoPg2bB1_SxriGWCPSGc8vkVRMwHkNFnLNtTsbqYDOTCHiK2BoGlHQ_aem_GjfuOIPjwrj7OeHBSXlM3Q&h=AT5LV_ejL7P8ma0OgKxmd2SVVJ6jFz91bRTt5voVOextm7Ydd_osTANr7Xgj8LVmEZffYA7NaCjSFZCYvRhateQKIQLhE5XbSFnktEsO-GKjB5UI1Z3WSkex07ctZfE" target="_blank" class="social-link">TikTok</a>
+      <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fyoutu.be%2FjjhKAc1sHv4%3Fis%3DFHNhtxhGJyMKZTU-%26fbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBExYUJkWm5VeHJhdUxZaEhSN3NydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6P6wjwe9XI6j7x-wrFAY6KdYMfuid0DVYZGlnerh5S1UcvCVRWXp_Bvb9qNg_aem_XFMaROdwbro63Qep0aDuVw&h=AT6CQHSB4TiplOfDzYVEEjAVssn03gjJSLYOQHi-i6fpGA4XhSbIBbesLap2IN1vv1gb10JzvJP6Ng3WAGjzXwEOQSlsG6XFFGvdSoygSnl04Yi3yTJAhJYUm6t1D_Hnaxvpcg" target="_blank" class="social-link">YouTube</a>
+
+    </div>
+    <p class="footer-legal"><a href="https://github.com/ehabtt289-cyber" target="_blank">&copy; The project was created by Programmer Ehab                                                                                                                                                                                                                                                     </a></p>
+  </footer>
+                          
+  <script>
+    // Hamburger toggle for mobile
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    });
+
+    // Navbar shadow on scroll
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+</body>
+
+</html>
