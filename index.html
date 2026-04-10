@@ -687,8 +687,18 @@
       }
 
       .why-card {
-        padding: 18px 10px;
-      }
+    min-height: 120px; /* ✅ يثبت ارتفاع الكروت */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* ✅ يوسّط المحتوى */
+    align-items: center;
+    text-align: center;
+  }
+
+  .why-card p {
+    font-size: 0.75rem; /* ✅ يصغر النص شوي */
+  }
+ 
 
       .why-icon {
         width: 44px;
